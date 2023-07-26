@@ -32,7 +32,9 @@ export const productStore = {
         products: []
     },
     getters: {
-        products({ products }) { return products },
+        products({ products }) {
+            return products
+        },
     },
     mutations: {
         setProducts(state, { products }) {

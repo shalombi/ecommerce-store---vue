@@ -25,12 +25,12 @@
                     <PopoverButton :class="[open ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out']">{{ category.name }}</PopoverButton>
                   </div>
 
-                  <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
+                  <transition enter-active-class="transition ease-out duration-200  z-10"  enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
                     <PopoverPanel class="absolute inset-x-0 top-full text-gray-500 sm:text-sm">
                       <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
                       <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
-                      <div class="relative bg-white">
+                      <div class="relative bg-white z-10">
                         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                           <div class="grid grid-cols-1 items-start gap-x-6 gap-y-10 pb-12 pt-10 md:grid-cols-2 lg:gap-x-8">
                             <div class="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-x-8">

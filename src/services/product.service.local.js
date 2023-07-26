@@ -68,13 +68,42 @@ function getEmptyProduct() {
     return {
         vendor: 'Instruction-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(1000, 9000),
-        
+
     }
+}
+
+
+const prd1 = {
+    //   id: 1,
+    //   name: 'Basic Tee 8-Pack',
+
+    vendor: 'Basic Tee 8-Pack',
+    href: '#',
+    price: '$256',
+    description: 'Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.',
+    options: '8 colors',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg',
+    imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
+}
+
+const prd2 = {
+    //   id: 2,
+    //   name: 'Basic Tee',
+
+    vendor: 'Basic Tee',
+    href: '#',
+    price: '$32',
+    description: 'Look like a visionary CEO and wear the same black t-shirt every day.',
+    options: 'Black',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
+    imageAlt: 'Front of plain black t-shirt.',
 }
 
 
 // TEST DATA
 // ; (async () => {
-//     await storageService.post(STORAGE_KEY, { vendor: 'Subali Karov 1', price: 180 })
-//     await storageService.post(STORAGE_KEY, { vendor: 'Subali Rahok 2', price: 240 })
+//     await storageService.post(STORAGE_KEY, { ...prd1})
+//     await storageService.post(STORAGE_KEY, { ...prd2})
 // })()
+
+

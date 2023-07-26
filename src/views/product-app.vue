@@ -1,21 +1,6 @@
 <template>
   <div class="container home">
-    <ul class="product-list">
-      <li v-for="product in products" :key="product._id">
-        <p>
-          {{product.vendor}}
-        </p>
-        <p>
-          ${{product.price?.toLocaleString()}}
-        </p>
-        <button @click="removeProduct(product._id)">x</button>
-        <button @click="updateProduct(product)">Update</button>
-        <hr />
-        <button @click="addProductMsg(product._id)">Add product msg</button>
-        <button @click="printProductToConsole(product)">Print msgs to console</button>
-
-      </li>
-    </ul>
+    <product-list-tailwind :products="products" />
     <hr />
     <form @submit.prevent="addProduct()">
       <h2>Add product</h2>
@@ -26,11 +11,15 @@
 </template>
 
 <script>
-import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
-import {productService} from '../services/product.service.local'
+
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { productService } from '../services/product.service.local'
 import { getActionRemoveProduct, getActionUpdateProduct, getActionAddProductMsg } from '../store/product.store'
+
+import ProductListTailwind from './product-list-tailwind.vue'
 export default {
   data() {
+
     return {
       productToAdd: productService.getEmptyProduct()
     }
@@ -44,15 +33,15 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({type: 'loadProducts'})
+    this.$store.dispatch({ type: 'loadProducts' })
   },
   methods: {
     async addProduct() {
       try {
-        await this.$store.dispatch({type: 'addProduct', product: this.productToAdd})
+        await this.$store.dispatch({ type: 'addProduct', product: this.productToAdd })
         showSuccessMsg('Product added')
         this.productToAdd = productService.getEmptyProduct()
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot add product')
       }
@@ -62,19 +51,19 @@ export default {
         await this.$store.dispatch(getActionRemoveProduct(productId))
         showSuccessMsg('Product removed')
 
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot remove product')
       }
     },
     async updateProduct(product) {
       try {
-        product = {...product}
+        product = { ...product }
         product.price = +prompt('New price?', product.price)
         await this.$store.dispatch(getActionUpdateProduct(product))
         showSuccessMsg('Product updated')
 
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot update product')
       }
@@ -83,7 +72,7 @@ export default {
       try {
         await this.$store.dispatch(getActionAddProductMsg(productId))
         showSuccessMsg('Product msg added')
-      } catch(err) {
+      } catch (err) {
         console.log(err)
         showErrorMsg('Cannot add product msg')
       }
@@ -91,8 +80,11 @@ export default {
     printProductToConsole(product) {
       console.log('Product msgs:', product.msgs)
     }
+  },
+  components: {
+    ProductListTailwind
   }
 
-  
+
 }
 </script>

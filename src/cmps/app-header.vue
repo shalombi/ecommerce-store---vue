@@ -4,7 +4,7 @@
       <router-link to="/">
         <span role="img" aria-label="logo">🙏</span>
       </router-link>
-      <router-link to="/car">Cars</router-link>
+      <router-link to="/product">Products</router-link>
       <router-link to="/review">Reviews</router-link>
       <router-link to="/chat">Chat</router-link>
       <router-link to="/login">Login / Signup</router-link>
@@ -17,7 +17,11 @@
       <img :src="loggedInUser.imgUrl" />
     </section>
   </header>
+  <h1 className="text-3xl font-bold underline">
+    Hello world!
+  </h1>
 </template>
+
 <script>
 export default {
   computed: {

@@ -1,22 +1,22 @@
-// Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "setup/typography";
+// // Setup
+// @import "setup/variables";
+// @import "setup/functions";
+// @import "setup/mixins";
+// @import "setup/typography";
 
-// Basics
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
-@import "basics/links";
-@import "basics/forms";
+// // Basics
+// @import "basics/helpers";
+// @import "basics/layout";
+// @import "basics/base";
+// @import "basics/links";
+// @import "basics/forms";
 
 
-// Components
-@import "cmps/app-header";
-@import "cmps/user-msg";
-@import "cmps/review-list";
-@import "cmps/product-list";
+// // Components
+// @import "cmps/app-header";
+// @import "cmps/user-msg";
+// @import "cmps/review-list";
+// @import "cmps/product-list";
 
 
 @tailwind base;

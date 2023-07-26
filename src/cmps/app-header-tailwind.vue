@@ -93,9 +93,10 @@
             <div class="flex flex-1 items-center justify-end">
               <!-- Search -->
               <router-link to="/admin" class="p-2 text-gray-400 hover:text-gray-500">
-                <span class="sr-only">Search</span>
+                <!-- <span class="sr-only">Search</span> -->
                 <!-- <MagnifyingGlassIcon class="h-6 w-6" aria-hidden="true" /> -->
-                <span class="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 border border-solid border-gray-200">
+                <span
+                  class="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 border border-solid border-gray-200">
                   <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                     <path
                       d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -104,6 +105,7 @@
 
 
               </router-link>
+
 
               <!-- Cart -->
               <div class="ml-4 flow-root lg:ml-8">
@@ -197,9 +199,13 @@ const navigation = {
   ],
   other: [
     { name: 'Products', href: '/product' },
-    { name: 'Stores', href: '#' },
+    { name: 'Login', href: '/login' },
+    // { name: 'Stores', href: '#' },
   ],
 }
 </script>
+
+<!-- <router-link to="/login">Login / Signup</router-link> -->
+<!--  -->
 
 <!-- <router-link to="/product">Products</router-link> -->

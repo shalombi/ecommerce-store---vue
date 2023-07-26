@@ -9,6 +9,8 @@ import userDetails from './views/user-details.vue'
 // import adminAppTailwind from './views/admin-app-tailwind.vue'
 import productListTailwind from './cmps/admin-app/product-list-tailwind.vue'
 import adminAppTailwind from './views/admin-app-tailwind.vue'
+import productEdit from './views/admin/product-edit.vue'
+
 // product-list-tailwind
 const routes = [
   {
@@ -53,11 +55,15 @@ const routes = [
     component: adminAppTailwind,
     name: 'admin-app',
     children: [
-      { path: '', component: adminAppTailwind }, // ניתן להכניס את About כאן גם, אם רוצים שהוא יופיע כברירת מחדל
+      // { path: '', component: adminAppTailwind }, // ניתן להכניס את About כאן גם, אם רוצים שהוא יופיע כברירת מחדל
       { path: 'product', component: productListTailwind },
+      { path: 'product/edit/:id', component: productEdit },
+      { path: 'product/edit', component: productEdit },
       { path: '2', component: chat }
     ]
   },
+
+
 ]
 
 

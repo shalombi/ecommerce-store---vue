@@ -1,5 +1,5 @@
 <template>
-    <div dir="rtl" class="px-4 sm:px-6 lg:px-8 w-full">
+    <div dir="rtl" class="px-4 sm:px-6 lg:px-8 w-full mt-44">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
@@ -7,10 +7,20 @@
                     email and role.</p>
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                <button type="button"
-                    class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add
-                    user</button>
 
+                <button type="button">
+                    <router-link
+                        class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        to="/admin/product/edit">Add instrument
+                    </router-link>
+                </button>
+
+                <!-- <hr /> -->
+                <!-- <form @submit.prevent="addProduct()">
+                    <h2>Add product</h2>
+                    <input type="text" v-model="productToAdd.vendor" />
+                    <button>Save</button>
+                </form> -->
                 <!-- <pre>{{ products }}</pre> -->
             </div>
         </div>
@@ -64,10 +74,13 @@
 
                                 <td
                                     class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <span @click="updateProduct(product)"
-                                        class="text-indigo-600 hover:text-indigo-900 cursor-pointer">עריכה</span>
-                                </td>
+                                    <span class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+                                        <!-- router-link -->
+                                        <router-link :to="'/admin/product/edit/' + product._id">עריכה</router-link>
 
+                                    </span>
+                                </td>
+                                <!-- @click="updateProduct(product)" -->
                                 <td
                                     class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <span @click="removeProduct(product._id)"
@@ -141,6 +154,7 @@ export default {
                 showErrorMsg('Cannot update product')
             }
         },
+
     }
 }
 </script>

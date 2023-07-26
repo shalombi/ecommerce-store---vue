@@ -6,8 +6,9 @@ import productApp from './views/product-app.vue'
 import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
-import AdminAppTailwind from './views/admin-app-tailwind.vue'
+import adminAppTailwind from './views/admin-app-tailwind.vue'
 import productListTailwind from './cmps/admin-app/product-list-tailwind.vue'
+import sliderAdminTailwind from './cmps/admin-app/sidebar-admin-tailwind.vue'
 // product-list-tailwind
 const routes = [
   {
@@ -44,15 +45,15 @@ const routes = [
   // {
   //   path: '/admin',
   //   name: 'admin-app',
-  //   component: AdminAppTailwind
+  //   component: adminAppTailwind
   // },
 
   {
     path: '/admin',
-    component: AdminAppTailwind,
+    component: sliderAdminTailwind,
     name: 'admin-app',
     children: [
-      { path: '', component: AdminAppTailwind }, // ניתן להכניס את About כאן גם, אם רוצים שהוא יופיע כברירת מחדל
+      { path: '', component: sliderAdminTailwind }, // ניתן להכניס את About כאן גם, אם רוצים שהוא יופיע כברירת מחדל
       { path: 'product', component: productListTailwind },
       { path: '2', component: chat }
     ]

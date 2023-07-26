@@ -1,12 +1,13 @@
 <template>
   <div class="container home">
     <product-list-tailwind :products="products" />
-    <hr />
+    <!-- todo : admin page to add product -->
+    <!-- <hr />
     <form @submit.prevent="addProduct()">
       <h2>Add product</h2>
       <input type="text" v-model="productToAdd.vendor" />
       <button>Save</button>
-    </form>
+    </form> -->
   </div>
 </template>
 

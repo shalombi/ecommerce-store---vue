@@ -77,12 +77,12 @@ const prd1 = {
     //   id: 1,
     //   name: 'Basic Tee 8-Pack',
 
-    vendor: 'מיקסר / כרטיס קול',
+    vendor: 'מיקסר 12 ערוצים עם MP3 כולל מסך',
     href: '#',
     price: '$256',
-    description: 'מיקסר משולב כרטיס קול ICM UM-66 פתרון מושלם לכל DJ , אולפן, חדר חזרות.',
+    description: 'מיקסר 12 ערוצים ,אפקטים ונגן mp3 כולל מסך',
     options: '8 colors',
-    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/UM-66-1-1000x1000.jpg',
+    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/KT-M1202-2-1000X1000-1000x1000.jpg',
     imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
 }
 

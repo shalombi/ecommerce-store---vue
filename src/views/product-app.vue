@@ -47,28 +47,28 @@ export default {
         showErrorMsg('Cannot add product')
       }
     },
-    async removeProduct(productId) {
-      try {
-        await this.$store.dispatch(getActionRemoveProduct(productId))
-        showSuccessMsg('Product removed')
+    // async removeProduct(productId) {
+    //   try {
+    //     await this.$store.dispatch(getActionRemoveProduct(productId))
+    //     showSuccessMsg('Product removed')
 
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot remove product')
-      }
-    },
-    async updateProduct(product) {
-      try {
-        product = { ...product }
-        product.price = +prompt('New price?', product.price)
-        await this.$store.dispatch(getActionUpdateProduct(product))
-        showSuccessMsg('Product updated')
+    //   } catch (err) {
+    //     console.log(err)
+    //     showErrorMsg('Cannot remove product')
+    //   }
+    // },
+    // async updateProduct(product) {
+    //   try {
+    //     product = { ...product }
+    //     product.price = +prompt('New price?', product.price)
+    //     await this.$store.dispatch(getActionUpdateProduct(product))
+    //     showSuccessMsg('Product updated')
 
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot update product')
-      }
-    },
+    //   } catch (err) {
+    //     console.log(err)
+    //     showErrorMsg('Cannot update product')
+    //   }
+    // },
     async addProductMsg(productId) {
       try {
         await this.$store.dispatch(getActionAddProductMsg(productId))

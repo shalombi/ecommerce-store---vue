@@ -18,3 +18,10 @@ export const store = Vuex.createStore({
   actions: {
   }
 })
+
+store.subscribe(function(cmd, state) {
+  console.log('**** Store state changed: ****')
+  console.log('Command:', cmd.payload)
+  console.log('storeState:\n',  state)
+  console.log('*******************************')
+})

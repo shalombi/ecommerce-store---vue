@@ -1,5 +1,5 @@
 <template>
-    <div dir="rtl" class="px-4 sm:px-6 lg:px-8 mr-15 w-full">
+    <div dir="rtl" class="px-4 sm:px-6 lg:px-8 w-full">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
@@ -11,7 +11,7 @@
                     class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add
                     user</button>
 
-                <pre>{{ products }}</pre>
+                <!-- <pre>{{ products }}</pre> -->
             </div>
         </div>
         <div class="mt-8 flow-root">
@@ -64,12 +64,14 @@
 
                                 <td
                                     class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">עריכה</a>
+                                    <span @click="updateProduct(product)"
+                                        class="text-indigo-600 hover:text-indigo-900 cursor-pointer">עריכה</span>
                                 </td>
 
                                 <td
                                     class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <span @click="removeProduct(product._id)" class="text-indigo-600 hover:text-indigo-900">מחיקה</span>
+                                    <span @click="removeProduct(product._id)"
+                                        class="text-indigo-600 hover:text-indigo-900 cursor-pointer">מחיקה</span>
                                 </td>
 
                             </tr>
@@ -83,6 +85,7 @@
   
 <script >
 import { getActionRemoveProduct, getActionUpdateProduct, getActionAddProductMsg } from '../../store/product.store'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 const people = [
     {
@@ -97,17 +100,19 @@ const people = [
     // More people...
 ]
 export default {
+
     data() {
         return {
         }
     },
-    created() {
-        this.$store.dispatch({ type: 'loadProducts' })
-    },
     computed: {
         products() {
+            // this.$store.dispatch({ type: 'loadProducts' })
             return this.$store.getters.products
         }
+    },
+    created() {
+        this.$store.dispatch({ type: 'loadProducts' })
     },
     methods: {
         async removeProduct(productId) {
@@ -118,6 +123,22 @@ export default {
             } catch (err) {
                 console.log(err)
                 showErrorMsg('Cannot remove product')
+            }
+        },
+        async updateProduct(product) {
+            // const x = getActionUpdateProduct(product)
+            // console.log(x)
+            // await this.$store.dispatch(getActionUpdateProduct(x))
+
+            try {
+                var product = { ...product }
+                product.price = +prompt('New price?', product.price)
+                await this.$store.dispatch(getActionUpdateProduct(product))
+                showSuccessMsg('Product updated')
+
+            } catch (err) {
+                console.log(err)
+                showErrorMsg('Cannot update product')
             }
         },
     }

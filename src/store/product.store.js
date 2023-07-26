@@ -33,6 +33,7 @@ export const productStore = {
     },
     getters: {
         products({ products }) {
+            console.log('products from store:', products)
             return products
         },
     },
@@ -44,7 +45,7 @@ export const productStore = {
             state.products.push(product)
         },
         updateProduct(state, { product }) {
-            const idx = state.products.findIndex(c => c.id === product._id)
+            const idx = state.products.findIndex(p => p._id === product._id)
             state.products.splice(idx, 1, product)
         },
         removeProduct(state, { productId }) {

@@ -9,7 +9,7 @@
   
         <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
           <div v-for="product in products" :key="product._id" class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-            <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
+            <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75">
               <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center sm:h-full sm:w-full" />
             </div>
             <div class="flex flex-1 flex-col space-y-2 p-4">

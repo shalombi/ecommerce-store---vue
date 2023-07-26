@@ -77,33 +77,52 @@ const prd1 = {
     //   id: 1,
     //   name: 'Basic Tee 8-Pack',
 
-    vendor: 'Basic Tee 8-Pack',
+    vendor: 'מיקסר / כרטיס קול',
     href: '#',
     price: '$256',
-    description: 'Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.',
+    description: 'מיקסר משולב כרטיס קול ICM UM-66 פתרון מושלם לכל DJ , אולפן, חדר חזרות.',
     options: '8 colors',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg',
+    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/UM-66-1-1000x1000.jpg',
     imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
 }
 
 const prd2 = {
-    //   id: 2,
-    //   name: 'Basic Tee',
-
-    vendor: 'Basic Tee',
+    vendor: 'מיקסר 10 מונו + 2 סטריאו',
     href: '#',
-    price: '$32',
-    description: 'Look like a visionary CEO and wear the same black t-shirt every day.',
-    options: 'Black',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
+    price: '$312',
+    description: '10 ערוצי מונו + 2 ערוצי סטריאו',
+    options: 'שחור',
+    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/T122-FX-1000x1000.jpg',
     imageAlt: 'Front of plain black t-shirt.',
 }
 
+const prd3 = {
+    vendor: 'גיטרה אקוסטית מוגברת שמאלית',
+    href: '#',
+    price: '$208',
+    description: 'ל AG460CEQ  יש את כל המאפיינים שעושים את גיטרות Walden נוחות לנגינה ונפלאות להאזנה. גיטרה יציבה ומאוזנת, בעלת צליל בהיר וחד.',
+    options: 'שחור',
+    imageSrc: 'https://artstudio.co.il/image/cache/data/product/Musical_instruments/Guitars/Acoustic_guitars/G460-LH-CEQ-1000x1000.jpg',
+    imageAlt: 'Front of plain black t-shirt.',
+}
+const prd4 = {
+    vendor: 'אורגן / סינטיסייזר קלידים',
+    href: '#',
+    price: '$168',
+    description: 'אורגן 5 אוקטבות KURZWEIL KP200',
+    options: 'שחור',
+    imageSrc: 'https://artstudio.co.il/image/cache/data/Musical_instruments/Keyboards/KP200-1000x1000.jpg',
+    imageAlt: 'Front of plain black t-shirt.',
+}
+
+// https://artstudio.co.il/image/cache/data/Musical_instruments/Keyboards/KP200-1000x1000.jpg
 
 // TEST DATA
 // ; (async () => {
 //     await storageService.post(STORAGE_KEY, { ...prd1})
 //     await storageService.post(STORAGE_KEY, { ...prd2})
+//     await storageService.post(STORAGE_KEY, { ...prd3})
+//     await storageService.post(STORAGE_KEY, { ...prd4})
 // })()
 
 

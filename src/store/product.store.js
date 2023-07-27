@@ -29,7 +29,12 @@ export function getActionAddProductMsg(productId) {
 
 export const productStore = {
     state: {
-        products: []
+        products: [],
+        filterBy: {
+            vendor: '',
+            minPrice: 0,
+            maxPrice: Infinity,
+        }
     },
     getters: {
         products({ products }) {
@@ -40,6 +45,11 @@ export const productStore = {
     mutations: {
         setProducts(state, { products }) {
             state.products = products
+        },
+        setFilterBy(state, { vendor, minPrice, maxPrice }) {
+            state.filterBy.vendor = vendor
+            state.filterBy.minPrice = minPrice
+            state.filterBy.maxPrice = maxPrice
         },
         addProduct(state, { product }) {
             state.products.push(product)
@@ -80,9 +90,12 @@ export const productStore = {
         },
         async loadProducts(context) {
             try {
-                const products = await productService.query()
+                // console.log('context:', context.state.filterBy)
+                const { filterBy } = context.state
+                const products = await productService.query(filterBy)
                 context.commit({ type: 'setProducts', products })
-            } catch (err) {
+            }
+            catch (err) {
                 console.log('productStore: Error in loadProducts', err)
                 throw err
             }
@@ -102,6 +115,16 @@ export const productStore = {
                 context.commit({ type: 'addProductMsg', productId, msg })
             } catch (err) {
                 console.log('productStore: Error in addProductMsg', err)
+                throw err
+            }
+        },
+        async setFilterBy(context, { vendor, minPrice, maxPrice }) {
+            try {
+                // const msg = await productService.addProductMsg(productId, txt)
+                context.commit({ type: 'setFilterBy', vendor, minPrice, maxPrice })
+            }
+            catch (err) {
+                console.log('productStore: Error in setFilterBy', err)
                 throw err
             }
         },

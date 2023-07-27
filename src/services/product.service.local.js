@@ -16,20 +16,41 @@ export const productService = {
 window.cs = productService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity }) {
     var products = await storageService.query(STORAGE_KEY)
 
     // if(!products || !products.length){
 
     // }
 
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
+    if (filterBy.vendor) {
+        const regex = new RegExp(filterBy.vendor, 'i')
         products = products.filter(product => regex.test(product.vendor) || regex.test(product.description))
     }
-    if (filterBy.price) {
-        products = products.filter(product => product.price <= filterBy.price)
+
+    // הקוד לא עובד! תייצר לי פילטר שיעשה פילטר לדברים הבאים : 
+    // filterBy.categories = ['white']
+    // products  = [{...product,categories:['White','Green']}  ]
+
+    // if (filterBy?.categories?.length > 0) {
+    //         for (let i = 0; i < filterBy.categories.length; i++) {
+    //             const regex = new RegExp(filterBy.categories[i], 'i')
+    //             products += products.filter(product => regex.test(product.categories))
+    //         }
+    //     }
+
+
+    console.log('products:', products)
+
+    console.log(filterBy)
+    // debugger
+
+    if (filterBy.minPrice > 0 || filterBy.maxPrice < Infinity) {
+        console.log('[[[')
+        products = products.filter(product => (product.price > filterBy.minPrice) && (product.price <= filterBy.maxPrice))
     }
+
+
     return products
 }
 
@@ -105,9 +126,9 @@ const prd1 = {
         { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
     ],
 
-//     description: `
-// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-// `,
+    //     description: `
+    // <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    // `,
 
     details: [
         {
@@ -125,6 +146,8 @@ const prd1 = {
         // More sections...
     ],
     imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
+
+    categories: ['green']
 }
 
 const prd2 = {
@@ -156,9 +179,9 @@ const prd2 = {
         { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
     ],
 
-//     description: `
-// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-// `,
+    //     description: `
+    // <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    // `,
 
     details: [
         {
@@ -176,6 +199,8 @@ const prd2 = {
         // More sections...
     ],
     imageAlt: 'Front of plain black t-shirt.',
+    categories: ['white']
+
 }
 
 const prd3 = {
@@ -205,9 +230,9 @@ const prd3 = {
         { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
     ],
 
-//     description: `
-//     <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-//   `,
+    //     description: `
+    //     <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    //   `,
 
     details: [
         {
@@ -224,6 +249,7 @@ const prd3 = {
         },
         // More sections...
     ],
+    categories: [],
     imageAlt: 'Front of plain black t-shirt.',
 }
 const prd4 = {
@@ -248,6 +274,7 @@ const prd4 = {
             alt: 'Angled front view with bag zipped and handles upright.',
         },
     ],
+    categories: [],
     imageAlt: 'Front of plain black t-shirt.',
     colors: [
         { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
@@ -255,9 +282,9 @@ const prd4 = {
         { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
     ],
 
-//     description: `
-// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-// `,
+    //     description: `
+    // <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    // `,
 
     details: [
         {

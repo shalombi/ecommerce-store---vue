@@ -13,8 +13,9 @@
   ```
 -->
 <template>
-    <div class="bg-white" dir= "rtl">
+    <div class="bg-white" dir="rtl">
         <div>
+
             <!-- Mobile filter dialog -->
             <TransitionRoot as="template" :show="mobileFiltersOpen">
                 <Dialog as="div" class="relative z-40 lg:hidden" @close="mobileFiltersOpen = false">
@@ -42,6 +43,22 @@
                                 </div>
 
                                 <!-- Filters -->
+
+                                <!-- input for txt -mobile search -->
+                                <div>
+                                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                    <div class="relative mt-2">
+                                        <input type="text" name="name" id="name"
+                                            class="peer block w-full border-0 bg-gray-50 py-1.5 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                                            placeholder="Jane Smith" />
+                                        <div class="absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600"
+                                            aria-hidden="true" />
+                                    </div>
+                                </div>
+
+
+
+
                                 <form class="mt-4 border-t border-gray-200">
                                     <h3 class="sr-only">Categories</h3>
                                     <ul role="list" class="px-2 py-3 font-medium text-gray-900">
@@ -62,7 +79,9 @@
                                                 </span>
                                             </DisclosureButton>
                                         </h3>
+
                                         <DisclosurePanel class="pt-6">
+
                                             <div class="space-y-6">
                                                 <div v-for="(option, optionIdx) in section.options" :key="option.value"
                                                     class="flex items-center">
@@ -73,12 +92,15 @@
                                                     <label :for="`filter-mobile-${section.id}-${optionIdx}`"
                                                         class="ml-3 min-w-0 flex-1 text-gray-500">{{ option.label }}</label>
                                                 </div>
+
                                             </div>
                                         </DisclosurePanel>
                                     </Disclosure>
                                 </form>
+
                             </DialogPanel>
                         </TransitionChild>
+
                     </div>
                 </Dialog>
             </TransitionRoot>
@@ -89,10 +111,9 @@
 
                     <div class="flex items-center">
                         <Menu as="div" class="relative inline-block text-left">
-                            <div >
+                            <div>
                                 <MenuButton
-                                    class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-                                    >
+                                    class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                                     Sort
                                     <ChevronDownIcon
                                         class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -109,10 +130,14 @@
                                 <MenuItems
                                     class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                     <div class="py-1">
-                                        <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
+                                        <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }"
+                                            v-model="filterBy.option">
                                         <a :href="option.href"
                                             :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-500', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
-                                                option.name }}</a>
+                                                option.name }}
+
+
+                                        </a>
                                         </MenuItem>
                                     </div>
                                 </MenuItems>
@@ -142,8 +167,56 @@
                                 class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                 <li v-for="category in subCategories" :key="category.name">
                                     <a :href="category.href">{{ category.name }}</a>
+                                    <!-- <input type="checkbox" value="John" v-model="checkedNames" /> John
+                                    <input type="checkbox" value="Sharon" v-model="checkedNames" /> Sharon -->
                                 </li>
                             </ul>
+
+                            <!-- input for txt -mobile search -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                <div class="relative mt-2">
+                                    <input type="text" name="name" id="name" v-model="filterBy.vendor"
+                                        class="peer block w-full border-0 bg-gray-50 py-1.5 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                                        placeholder="Jane Smith" />
+                                    <div class="absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600"
+                                        aria-hidden="true" />
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <label for="minPrice" class="block text-sm font-medium leading-6 text-gray-900">Min
+                                    Price</label>
+                                <div class="relative mt-2 rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-gray-500 sm:text-sm">₪</span>
+                                    </div>
+                                    <input type="number" name="maxPrice" id="price" v-model="filterBy.minPrice"
+                                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="0.00" aria-describedby="price-currency" />
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <span class="text-gray-500 sm:text-sm" id="price-currency">ILS</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="maxPrice" class="block text-sm font-medium leading-6 text-gray-900">Max
+                                    Price</label>
+                                <div class="relative mt-2 rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-gray-500 sm:text-sm">₪</span>
+                                    </div>
+                                    <input type="number" name="maxPrice" id="price" v-model="filterBy.maxPrice"
+                                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="0.00" aria-describedby="price-currency" />
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <span class="text-gray-500 sm:text-sm" id="price-currency">ILS</span>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <Disclosure as="div" v-for="section in filters" :key="section.id"
                                 class="border-b border-gray-200 py-6" v-slot="{ open }">
@@ -161,15 +234,28 @@
                                     <div class="space-y-4">
                                         <div v-for="(option, optionIdx) in section.options" :key="option.value"
                                             class="flex items-center">
-                                            <input :id="`filter-${section.id}-${optionIdx}`" :name="`${section.id}[]`"
+                                            <!-- <input :id="`filter-${section.id}-${optionIdx}`" :name="`${section.id}[]`"
                                                 :value="option.value" type="checkbox" :checked="option.checked"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" /> -->
+
+                                            <input v-model="filterBy.categories" :value="option.value" type="checkbox"
                                                 class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                            <!-- {{ option.value }} -->
+
                                             <label :for="`filter-${section.id}-${optionIdx}`"
                                                 class="ml-3 text-sm text-gray-600">{{ option.label }}</label>
                                         </div>
                                     </div>
+
+
                                 </DisclosurePanel>
                             </Disclosure>
+
+                            <button type="button"
+                                class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                @click="doFilter()">filter</button>
+
+
                         </form>
 
                         <!-- Product grid -->
@@ -182,6 +268,11 @@
             </main>
         </div>
     </div>
+
+    <!-- <button @click="doFilter()">filter</button> -->
+    <pre>
+    {{ $data }}
+    </pre>
 </template>
   
 <script setup>
@@ -270,6 +361,24 @@ export default {
     props: {
         products: {
             type: String,
+        }
+    },
+
+    data() {
+        return {
+            filterBy: {
+                vendor: '',
+                categories: [],
+                minPrice: '',
+                maxPrice: '',
+            }
+        }
+    },
+    methods: {
+        doFilter() {
+            console.log('filter...')
+            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice })
+            this.$store.dispatch({ type: 'loadProducts' })
         }
     },
     components: {

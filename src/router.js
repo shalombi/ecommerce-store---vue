@@ -6,10 +6,12 @@ import productApp from './views/product-app.vue'
 import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
+import productDetails from './views/product-details.vue'
 // import adminAppTailwind from './views/admin-app-tailwind.vue'
 import productListTailwind from './cmps/admin-app/product-list-tailwind.vue'
 import adminAppTailwind from './views/admin-app-tailwind.vue'
 import productEdit from './views/admin/product-edit.vue'
+
 
 // product-list-tailwind
 const routes = [
@@ -42,6 +44,11 @@ const routes = [
     path: '/user/:id',
     name: 'user-details',
     component: userDetails
+  },
+  {
+    path: '/product/:id',
+    name: 'product-details',
+    component: productDetails
   },
 
   // {

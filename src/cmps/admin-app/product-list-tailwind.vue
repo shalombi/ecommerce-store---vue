@@ -1,5 +1,5 @@
 <template>
-    <div dir="rtl" class="px-4 sm:px-6 lg:px-8 w-full mt-44">
+    <div v-if="products" dir="rtl" class="px-4 sm:px-6 lg:px-8 w-full mt-44">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
@@ -50,11 +50,11 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
-                            <tr v-for="product in products" :key="product._id">
+                            <tr v-for="product in products" :key="product?._id">
                                 <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <div class="h-11 w-11 flex-shrink-0">
-                                            <img class="h-11 w-11 rounded-full" :src="product.imageSrc" alt="" />
+                                            <img class="h-11 w-11 rounded-full" :src="product?.images[0]?.src" alt="" />
                                         </div>
                                         <div class="ml-4">
                                             <div class="font-medium text-gray-900">{{ product.vendor }}</div>

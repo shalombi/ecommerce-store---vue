@@ -2,7 +2,6 @@
   <span role="img" aria-label="logo">🙏</span>
 </router-link>
 <router-link to="/product">Products</router-link> -->
-
 <template>
   <div class="bg-white">
     <header class="relative bg-white">
@@ -121,13 +120,15 @@
         </div>
       </nav>
     </header>
+    <promo-section-shop/>
   </div>
 </template>
 
 <script setup>
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
 import { MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/vue/24/outline'
-
+import PromoSectionShop from './promo-section-shop.vue';
+//<promo-section-shop/>
 const navigation = {
   categories: [
     {
@@ -203,8 +204,15 @@ const navigation = {
     // { name: 'Stores', href: '#' },
   ],
 }
-</script>
 
+</script>
+<script>
+export default {
+  components: {
+    PromoSectionShop
+  }
+}
+</script>
 <!-- <router-link to="/login">Login / Signup</router-link> -->
 <!--  -->
 

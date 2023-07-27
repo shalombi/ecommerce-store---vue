@@ -1,16 +1,18 @@
 <template>
   <div class="container home">
-    <product-list-tailwind :products="products" />
-
+    <product-filter :products="products" />
   </div>
 </template>
 
 <script>
+// <product-list-tailwind :products="products" />
+
+import productFilter from '../cmps/product-filter.vue'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 // import { productService } from '../services/product.service.local'
-import {getActionAddProductMsg } from '../store/product.store'
+import { getActionAddProductMsg } from '../store/product.store'
 
-import ProductListTailwind from './product-list-tailwind.vue'
+
 export default {
   data() {
 
@@ -45,7 +47,8 @@ export default {
     }
   },
   components: {
-    ProductListTailwind
+    // ProductListTailwind,
+    productFilter
   }
 
 

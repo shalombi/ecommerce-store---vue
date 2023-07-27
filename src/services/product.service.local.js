@@ -82,9 +82,48 @@ const prd1 = {
     vendor: 'מיקסר 12 ערוצים עם MP3 כולל מסך',
     href: '#',
     price: 256,
-    description: 'מיקסר 12 ערוצים ,אפקטים ונגן mp3 כולל מסך',
+    // description: 'מיקסר 12 ערוצים ,אפקטים ונגן mp3 כולל מסך',
     options: '8 colors',
-    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/KT-M1202-2-1000X1000-1000x1000.jpg',
+    // imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/KT-M1202-2-1000X1000-1000x1000.jpg',
+    images: [
+        {
+            id: 1,
+            name: 'Angled view',
+            src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+        {
+            id: 2,
+            name: 'Angled view',
+            src: 'https://wtailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+    ],
+    colors: [
+        { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
+        { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
+        { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
+    ],
+
+//     description: `
+// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+// `,
+
+    details: [
+        {
+            name: 'Features',
+            items: [
+                'Multiple strap configurations',
+                'Spacious interior with top zip',
+                'Leather handle and tabs',
+                'Interior dividers',
+                'Stainless strap loops',
+                'Double stitched construction',
+                'Water-resistant',
+            ],
+        },
+        // More sections...
+    ],
     imageAlt: 'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
 }
 
@@ -94,7 +133,48 @@ const prd2 = {
     price: 312,
     description: '10 ערוצי מונו + 2 ערוצי סטריאו',
     options: 'שחור',
-    imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/T122-FX-1000x1000.jpg',
+
+
+    // imageSrc: 'https://artstudio.co.il/image/cache/data/product/SOUND/Mixers/T122-FX-1000x1000.jpg',
+    images: [
+        {
+            id: 1,
+            name: 'Angled view',
+            src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+        {
+            id: 2,
+            name: 'Angled view',
+            src: 'https://wtailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+    ],
+    colors: [
+        { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
+        { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
+        { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
+    ],
+
+//     description: `
+// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+// `,
+
+    details: [
+        {
+            name: 'Features',
+            items: [
+                'Multiple strap configurations',
+                'Spacious interior with top zip',
+                'Leather handle and tabs',
+                'Interior dividers',
+                'Stainless strap loops',
+                'Double stitched construction',
+                'Water-resistant',
+            ],
+        },
+        // More sections...
+    ],
     imageAlt: 'Front of plain black t-shirt.',
 }
 
@@ -104,7 +184,46 @@ const prd3 = {
     price: 208,
     description: 'ל AG460CEQ  יש את כל המאפיינים שעושים את גיטרות Walden נוחות לנגינה ונפלאות להאזנה. גיטרה יציבה ומאוזנת, בעלת צליל בהיר וחד.',
     options: 'שחור',
-    imageSrc: 'https://artstudio.co.il/image/cache/data/product/Musical_instruments/Guitars/Acoustic_guitars/G460-LH-CEQ-1000x1000.jpg',
+    // imageSrc: 'https://artstudio.co.il/image/cache/data/product/Musical_instruments/Guitars/Acoustic_guitars/G460-LH-CEQ-1000x1000.jpg',
+    images: [
+        {
+            id: 1,
+            name: 'Angled view',
+            src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+        {
+            id: 2,
+            name: 'Angled view',
+            src: 'https://wtailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+    ],
+    colors: [
+        { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
+        { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
+        { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
+    ],
+
+//     description: `
+//     <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+//   `,
+
+    details: [
+        {
+            name: 'Features',
+            items: [
+                'Multiple strap configurations',
+                'Spacious interior with top zip',
+                'Leather handle and tabs',
+                'Interior dividers',
+                'Stainless strap loops',
+                'Double stitched construction',
+                'Water-resistant',
+            ],
+        },
+        // More sections...
+    ],
     imageAlt: 'Front of plain black t-shirt.',
 }
 const prd4 = {
@@ -113,12 +232,50 @@ const prd4 = {
     price: 168,
     description: 'אורגן 5 אוקטבות KURZWEIL KP200',
     options: 'שחור',
-    imageSrc: 'https://artstudio.co.il/image/cache/data/Musical_instruments/Keyboards/KP200-1000x1000.jpg',
+    // imageSrc: 'https://artstudio.co.il/image/cache/data/Musical_instruments/Keyboards/KP200-1000x1000.jpg',
+
+    images: [
+        {
+            id: 1,
+            name: 'Angled view',
+            src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+        {
+            id: 2,
+            name: 'Angled view',
+            src: 'https://wtailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+            alt: 'Angled front view with bag zipped and handles upright.',
+        },
+    ],
     imageAlt: 'Front of plain black t-shirt.',
+    colors: [
+        { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
+        { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
+        { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
+    ],
+
+//     description: `
+// <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+// `,
+
+    details: [
+        {
+            name: 'Features',
+            items: [
+                'Multiple strap configurations',
+                'Spacious interior with top zip',
+                'Leather handle and tabs',
+                'Interior dividers',
+                'Stainless strap loops',
+                'Double stitched construction',
+                'Water-resistant',
+            ],
+        },
+        // More sections...
+    ],
 }
 
-
-// https://artstudio.co.il/image/cache/data/Musical_instruments/Keyboards/KP200-1000x1000.jpg
 
 // TEST DATA
 // ; (async () => {

@@ -46,8 +46,9 @@ async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity })
     // debugger
 
     if (filterBy.minPrice > 0 || filterBy.maxPrice < Infinity) {
-        console.log('[[[')
-        products = products.filter(product => (product.price > filterBy.minPrice) && (product.price <= filterBy.maxPrice))
+        if (filterBy.minPrice > 0 && filterBy.minPrice) products = products.filter(product => (product.price > filterBy.minPrice))
+        if (filterBy.maxPrice < Infinity && filterBy.maxPrice) products = products.filter(product => (product.price < filterBy.maxPrice))
+
     }
 
 

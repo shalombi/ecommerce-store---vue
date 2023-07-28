@@ -48,8 +48,19 @@ async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity })
     if (filterBy.minPrice > 0 || filterBy.maxPrice < Infinity) {
         if (filterBy.minPrice > 0 && filterBy.minPrice) products = products.filter(product => (product.price > filterBy.minPrice))
         if (filterBy.maxPrice < Infinity && filterBy.maxPrice) products = products.filter(product => (product.price < filterBy.maxPrice))
-
     }
+
+    if (filterBy.productType && filterBy.productType !== 'all') {
+        console.log(filterBy.productType)
+        // console.log(filterBy.productType)
+        products = products.filter(product => (product.productType === filterBy.productType))
+    }
+    if (filterBy.productType === 'all') {
+        console.log(filterBy.productType)
+        // console.log(filterBy.productType)
+        products = products.filter(product => (product))
+    }
+
 
 
     return products
@@ -102,6 +113,7 @@ function getEmptyProduct() {
 
 const prd1 = {
     vendor: 'מיקסר 12 ערוצים עם MP3 כולל מסך',
+    productType: 'amplification',
     href: '#',
     price: 256,
     // description: 'מיקסר 12 ערוצים ,אפקטים ונגן mp3 כולל מסך',
@@ -153,6 +165,7 @@ const prd1 = {
 
 const prd2 = {
     vendor: 'מיקסר 10 מונו + 2 סטריאו',
+    productType: 'amplification',
     href: '#',
     price: 312,
     description: '10 ערוצי מונו + 2 ערוצי סטריאו',
@@ -206,6 +219,8 @@ const prd2 = {
 
 const prd3 = {
     vendor: 'גיטרה אקוסטית מוגברת שמאלית',
+    productType: 'guitar',
+
     href: '#',
     price: 208,
     description: 'ל AG460CEQ  יש את כל המאפיינים שעושים את גיטרות Walden נוחות לנגינה ונפלאות להאזנה. גיטרה יציבה ומאוזנת, בעלת צליל בהיר וחד.',
@@ -255,6 +270,8 @@ const prd3 = {
 }
 const prd4 = {
     vendor: 'אורגן / סינטיסייזר קלידים',
+    productType: 'organ',
+
     href: '#',
     price: 168,
     description: 'אורגן 5 אוקטבות KURZWEIL KP200',

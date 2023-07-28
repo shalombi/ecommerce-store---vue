@@ -165,8 +165,9 @@
                             <h3 class="sr-only">Categories</h3>
                             <ul role="list"
                                 class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                                <li v-for="category in subCategories" :key="category.name">
-                                    <a :href="category.href">{{ category.name }}</a>
+                                <li v-for="category in subCategories" :key="category.type"
+                                    @click="setCategory(category.type)">
+                                    <div>{{ category.name }}</div>
                                     <!-- <input type="checkbox" value="John" v-model="checkedNames" /> John
                                     <input type="checkbox" value="Sharon" v-model="checkedNames" /> Sharon -->
                                 </li>
@@ -174,11 +175,11 @@
 
                             <!-- input for txt -mobile search -->
                             <div>
-                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">שם פריט</label>
                                 <div class="relative mt-2">
                                     <input type="text" name="name" id="name" v-model="filterBy.vendor"
                                         class="peer block w-full border-0 bg-gray-50 py-1.5 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
-                                        placeholder="Jane Smith" />
+                                        placeholder="חיפוש" />
                                     <div class="absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600"
                                         aria-hidden="true" />
                                 </div>
@@ -186,8 +187,9 @@
 
 
                             <div>
-                                <label for="minPrice" class="block text-sm font-medium leading-6 text-gray-900">Min
-                                    Price</label>
+                                <label for="minPrice" class="block text-sm font-medium leading-6 text-gray-900">
+                                    מחיר מינימלי
+                                </label>
                                 <div class="relative mt-2 rounded-md shadow-sm">
                                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                         <span class="text-gray-500 sm:text-sm">₪</span>
@@ -202,8 +204,7 @@
                             </div>
 
                             <div>
-                                <label for="maxPrice" class="block text-sm font-medium leading-6 text-gray-900">Max
-                                    Price</label>
+                                <label for="maxPrice" class="block text-sm font-medium leading-6 text-gray-900">מחיר מקסימלי</label>
                                 <div class="relative mt-2 rounded-md shadow-sm">
                                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                         <span class="text-gray-500 sm:text-sm">₪</span>
@@ -303,11 +304,11 @@ const sortOptions = [
     { name: 'Price: High to Low', href: '#', current: false },
 ]
 const subCategories = [
-    { name: 'Totes', href: '#' },
-    { name: 'Backpacks', href: '#' },
-    { name: 'Travel Bags', href: '#' },
-    { name: 'Hip Bags', href: '#' },
-    { name: 'Laptop Sleeves', href: '#' },
+    { name: 'הכול', type: 'all', href: '#' },
+    { name: 'אורגן', type: 'organ', href: '#' },
+    { name: 'גיטרה', type: 'guitar', href: '#' },
+    { name: 'הגברה', type: 'amplification', href: '#' },
+
 ]
 const filters = [
     {
@@ -371,14 +372,19 @@ export default {
                 categories: [],
                 minPrice: '',
                 maxPrice: '',
+                type: ''
             }
         }
     },
     methods: {
         doFilter() {
             console.log('filter...')
-            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice })
+            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice, productType: this.filterBy.productType })
             this.$store.dispatch({ type: 'loadProducts' })
+        }
+        ,
+        setCategory(productType) {
+            this.filterBy.productType = productType
         }
     },
     components: {

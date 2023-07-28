@@ -47,11 +47,13 @@ export const productStore = {
         setProducts(state, { products }) {
             state.products = products
         },
-        setFilterBy(state, { vendor, minPrice, maxPrice, productType }) {
+        setFilterBy(state, { vendor, minPrice, maxPrice, productType, valueOption }) {
             state.filterBy.vendor = vendor
             state.filterBy.minPrice = minPrice
             state.filterBy.maxPrice = maxPrice
             state.filterBy.productType = productType
+            state.filterBy.valueOption = valueOption
+
         },
         addProduct(state, { product }) {
             state.products.push(product)
@@ -120,10 +122,10 @@ export const productStore = {
                 throw err
             }
         },
-        async setFilterBy(context, { vendor, minPrice, maxPrice, productType }) {
+        async setFilterBy(context, { vendor, minPrice, maxPrice, productType, valueOption }) {
             try {
                 // const msg = await productService.addProductMsg(productId, txt)
-                context.commit({ type: 'setFilterBy', vendor, minPrice, maxPrice, productType })
+                context.commit({ type: 'setFilterBy', vendor, minPrice, maxPrice, productType, valueOption })
             }
             catch (err) {
                 console.log('productStore: Error in setFilterBy', err)

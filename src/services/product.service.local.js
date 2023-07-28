@@ -16,7 +16,7 @@ export const productService = {
 window.cs = productService
 
 
-async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity }) {
+async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity, valueOption: '' }) {
     var products = await storageService.query(STORAGE_KEY)
 
     // if(!products || !products.length){
@@ -61,6 +61,26 @@ async function query(filterBy = { vendor: '', minPrice: 0, maxPrice: Infinity })
         products = products.filter(product => (product))
     }
 
+    if (filterBy.valueOption) {
+
+
+        if (filterBy.valueOption === 'lowToHigh') {
+            console.log(filterBy.valueOption)
+            products = products.sort(function (a, b) {
+                return a.price - b.price;
+            })
+        }
+
+        else if (filterBy.valueOption === 'highToLow') {
+            console.log(filterBy.valueOption)
+
+            products = products.sort(function (a, b) {
+                return b.price - a.price;
+            })
+        }
+
+
+    }
 
 
     return products

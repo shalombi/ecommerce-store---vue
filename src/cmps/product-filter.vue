@@ -131,13 +131,16 @@
                                     class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                     <div class="py-1">
                                         <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }"
-                                            v-model="filterBy.option">
-                                        <a :href="option.href"
-                                            :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-500', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
-                                                option.name }}
+                                            @click="setOption(option)"
+                                            class="cursor-pointer"
+                                            >
+                                            
+                                        <div
+                                            :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-500', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">
+                                            {{ option.name }}
 
 
-                                        </a>
+                                        </div>
                                         </MenuItem>
                                     </div>
                                 </MenuItems>
@@ -166,7 +169,7 @@
                             <ul role="list"
                                 class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                 <li v-for="category in subCategories" :key="category.type"
-                                    @click="setCategory(category.type)">
+                                    @click="setCategory(category.type)" class="cursor-pointer">
                                     <div>{{ category.name }}</div>
                                     <!-- <input type="checkbox" value="John" v-model="checkedNames" /> John
                                     <input type="checkbox" value="Sharon" v-model="checkedNames" /> Sharon -->
@@ -204,7 +207,8 @@
                             </div>
 
                             <div>
-                                <label for="maxPrice" class="block text-sm font-medium leading-6 text-gray-900">מחיר מקסימלי</label>
+                                <label for="maxPrice" class="block text-sm font-medium leading-6 text-gray-900">מחיר
+                                    מקסימלי</label>
                                 <div class="relative mt-2 rounded-md shadow-sm">
                                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                         <span class="text-gray-500 sm:text-sm">₪</span>
@@ -297,11 +301,11 @@ import productListTailwind from './product-list-tailwind.vue'
 
 
 const sortOptions = [
-    { name: 'Most Popular', href: '#', current: true },
-    { name: 'Best Rating', href: '#', current: false },
-    { name: 'Newest', href: '#', current: false },
-    { name: 'Price: Low to High', href: '#', current: false },
-    { name: 'Price: High to Low', href: '#', current: false },
+    // { name: 'Most Popular', href: '#', current: true },
+    // { name: 'Best Rating', href: '#', current: false },
+    // { name: 'Newest', href: '#', current: false },
+    { name: 'Price: Low to High', value: 'lowToHigh', href: '#', current: false },
+    { name: 'Price: High to Low', value: 'highToLow', href: '#', current: false },
 ]
 const subCategories = [
     { name: 'הכול', type: 'all', href: '#' },
@@ -372,19 +376,25 @@ export default {
                 categories: [],
                 minPrice: '',
                 maxPrice: '',
-                type: ''
+                type: '',
+                valueOption: ''
             }
         }
     },
     methods: {
         doFilter() {
             console.log('filter...')
-            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice, productType: this.filterBy.productType })
+            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice, productType: this.filterBy.productType,valueOption:this.filterBy.valueOption })
             this.$store.dispatch({ type: 'loadProducts' })
         }
         ,
         setCategory(productType) {
             this.filterBy.productType = productType
+        },
+        setOption({ value }) {
+            console.log(value)
+
+            this.filterBy.valueOption = value
         }
     },
     components: {

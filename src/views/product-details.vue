@@ -99,11 +99,12 @@
 
               <button type="button"
                 class="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
-                <HeartIcon @click="addToFavorites(product)" class="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                <HeartIcon v-if="!isFavorite" @click="addToFavorites(product)" class="h-6 w-6 flex-shrink-0"
+                  aria-hidden="true" />
 
                 <span class="sr-only">Add to favorites</span>
               </button>
-              <button @click=removeFromFavorites(product._id)>remove from favorites</button>
+              <button v-if="isFavorite" @click=removeFromFavorites(product._id)> remove from favorites </button>
             </div>
           </form>
 
@@ -200,6 +201,7 @@ const product1 = {
 
 <script>
 import { favoriteStore } from '../store/favorite.store'
+import { favoriteService } from '../services/favorite.service.local'
 
 // service
 // favoriteService
@@ -207,29 +209,49 @@ import { favoriteStore } from '../store/favorite.store'
 
 export default {
   created() {
-    const id = this.$route.params.id
-    productService.getById(id)
-      .then(p => {
-        console.log(p)
-        this.product = p
-        // selectedColor = ref(this.product.colors[0])
-      })
+    this.loadItem()
   },
 
   data() {
     return {
-      product: null
+      product: null,
+      isFavorite: false
 
     }
   },
 
   methods: {
+    loadItem() {
+      const id = this.$route.params.id
+      productService.getById(id)
+        .then(p => {
+          console.log(p)
+          this.product = p
+          this.setIsFavorite()
+        })
+    },
     addToFavorites(favorite) {
       // const favoriteToSave = { ...currFavorite, id: '' }
       this.$store.dispatch({ type: 'addFavorite', favorite })
+      this.loadItem()
     },
-    removeFromFavorites(favoriteId){
+    removeFromFavorites(favoriteId) {
       this.$store.dispatch({ type: 'removeFavorite', favoriteId })
+      this.loadItem()
+    },
+
+    async setIsFavorite() {
+      let favorites = await favoriteService.query()
+      const isFavorite = favorites.filter(f => console.log(f._id, this.product._id) || f._id === this.product._id)
+      console.log('isFavorite: $$$$', isFavorite)
+      if (isFavorite.length >= 1) {
+        console.log('%%%')
+        this.isFavorite = true
+      }
+      else {
+        this.isFavorite = false
+
+      }
 
     }
   },

@@ -131,10 +131,8 @@
                                     class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                     <div class="py-1">
                                         <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }"
-                                            @click="setOption(option)"
-                                            class="cursor-pointer"
-                                            >
-                                            
+                                            @click="setOption(option)" class="cursor-pointer">
+
                                         <div
                                             :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-500', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">
                                             {{ option.name }}
@@ -180,7 +178,7 @@
                             <div>
                                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">שם פריט</label>
                                 <div class="relative mt-2">
-                                    <input type="text" name="name" id="name" v-model="filterBy.vendor"
+                                    <input type="text" name="name" id="name" v-model="filterBy.vendor" @input="doFilter()"
                                         class="peer block w-full border-0 bg-gray-50 py-1.5 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="חיפוש" />
                                     <div class="absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600"
@@ -197,7 +195,8 @@
                                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                         <span class="text-gray-500 sm:text-sm">₪</span>
                                     </div>
-                                    <input type="number" name="maxPrice" id="price" v-model="filterBy.minPrice"
+                                    <input type="number" name="minPrice" id="price" v-model="filterBy.minPrice"
+                                        @input="doFilter()"
                                         class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         placeholder="0.00" aria-describedby="price-currency" />
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -214,6 +213,7 @@
                                         <span class="text-gray-500 sm:text-sm">₪</span>
                                     </div>
                                     <input type="number" name="maxPrice" id="price" v-model="filterBy.maxPrice"
+                                        @input="doFilter()"
                                         class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         placeholder="0.00" aria-describedby="price-currency" />
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -256,10 +256,15 @@
                                 </DisclosurePanel>
                             </Disclosure>
 
+                            <!-- <button type="button"
+                                class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                @click="doFilter()">filter</button> -->
+
                             <button type="button"
                                 class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                                @click="doFilter()">filter</button>
+                                @click="doFilter(true)">reset filter</button>
 
+                            <!-- <button >reset filter</button> -->
 
                         </form>
 
@@ -274,6 +279,7 @@
         </div>
     </div>
 
+    <!-- <button @click="doFilter(true)">reset filter</button> -->
     <!-- <button @click="doFilter()">filter</button> -->
     <pre>
     {{ $data }}
@@ -312,6 +318,7 @@ const subCategories = [
     { name: 'אורגן', type: 'organ', href: '#' },
     { name: 'גיטרה', type: 'guitar', href: '#' },
     { name: 'הגברה', type: 'amplification', href: '#' },
+    { name: 'פרטים שאהבתי', type: 'byFavorite', href: '#' },
 
 ]
 const filters = [
@@ -377,25 +384,55 @@ export default {
                 minPrice: '',
                 maxPrice: '',
                 type: '',
-                valueOption: ''
+                valueOption: '',
+                productType: '',
+                byFavorite: false,
             }
         }
     },
     methods: {
-        doFilter() {
+        doFilter(isResetFilter = false) {
+
             console.log('filter...')
-            this.$store.dispatch({ type: 'setFilterBy', vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice, maxPrice: this.filterBy.maxPrice, productType: this.filterBy.productType,valueOption:this.filterBy.valueOption })
+            if (isResetFilter) {
+                this.$store.dispatch({
+                    type: 'setFilterBy', vendor: '', minPrice: '',
+                    maxPrice: '', productType: '', valueOption: '', byFavorite: false
+                })
+            }
+            else {
+                this.$store.dispatch(
+                    {
+                        type: 'setFilterBy',
+                        vendor: this.filterBy.vendor, minPrice: this.filterBy.minPrice,
+                        maxPrice: this.filterBy.maxPrice, productType: this.filterBy.productType,
+                        valueOption: this.filterBy.valueOption, byFavorite: this.filterBy.byFavorite
+                    }
+                )
+            }
             this.$store.dispatch({ type: 'loadProducts' })
         }
         ,
         setCategory(productType) {
             this.filterBy.productType = productType
+            this.doFilter()
         },
         setOption({ value }) {
-            console.log(value)
 
-            this.filterBy.valueOption = value
-        }
+            if (value === 'byFavorite') {
+                this.filterBy.byFavorite = true
+            }
+            else {
+                console.log(value)
+                this.filterBy.byFavorite = false
+                this.filterBy.valueOption = value
+            }
+            this.doFilter()
+        },
+        // setByFavorite(isFavorite) {
+        //     this.filterBy.byFavorite = isFavorite
+        //     this.doFilter()
+        // }
     },
     components: {
         productListTailwind

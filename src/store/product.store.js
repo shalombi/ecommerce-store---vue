@@ -34,7 +34,8 @@ export const productStore = {
             vendor: '',
             minPrice: 0,
             maxPrice: Infinity,
-            productType: ''
+            productType: '',
+            byFavorite:''
         }
     },
     getters: {
@@ -47,12 +48,13 @@ export const productStore = {
         setProducts(state, { products }) {
             state.products = products
         },
-        setFilterBy(state, { vendor, minPrice, maxPrice, productType, valueOption }) {
+        setFilterBy(state, { vendor, minPrice, maxPrice, productType, valueOption,byFavorite }) {
             state.filterBy.vendor = vendor
             state.filterBy.minPrice = minPrice
             state.filterBy.maxPrice = maxPrice
             state.filterBy.productType = productType
             state.filterBy.valueOption = valueOption
+            state.filterBy.byFavorite = byFavorite
 
         },
         addProduct(state, { product }) {
@@ -74,10 +76,11 @@ export const productStore = {
     actions: {
         async addProduct(context, { product }) {
             try {
-                product = await productService.save(product)
+                 product = await productService.save(product)
                 context.commit(getActionAddProduct(product))
                 return product
-            } catch (err) {
+            }
+            catch (err) {
                 console.log('productStore: Error in addProduct', err)
                 throw err
             }
@@ -122,10 +125,10 @@ export const productStore = {
                 throw err
             }
         },
-        async setFilterBy(context, { vendor, minPrice, maxPrice, productType, valueOption }) {
+        async setFilterBy(context, { vendor, minPrice, maxPrice, productType, valueOption ,byFavorite}) {
             try {
                 // const msg = await productService.addProductMsg(productId, txt)
-                context.commit({ type: 'setFilterBy', vendor, minPrice, maxPrice, productType, valueOption })
+                context.commit({ type: 'setFilterBy', vendor, minPrice, maxPrice, productType, valueOption ,byFavorite})
             }
             catch (err) {
                 console.log('productStore: Error in setFilterBy', err)

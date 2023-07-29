@@ -99,9 +99,11 @@
 
               <button type="button"
                 class="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
-                <HeartIcon class="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                <HeartIcon @click="addToFavorites(product)" class="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+
                 <span class="sr-only">Add to favorites</span>
               </button>
+              <button @click=removeFromFavorites(product._id)>remove from favorites</button>
             </div>
           </form>
 
@@ -197,20 +199,40 @@ const product1 = {
 </script>
 
 <script>
+import { favoriteStore } from '../store/favorite.store'
+
+// service
+// favoriteService
+// pro
+
 export default {
-  data() {
-    return {
-      product: null
-    }
-  },
   created() {
     const id = this.$route.params.id
     productService.getById(id)
       .then(p => {
         console.log(p)
         this.product = p
-        selectedColor = ref(this.product.colors[0])
+        // selectedColor = ref(this.product.colors[0])
       })
-  }
+  },
+
+  data() {
+    return {
+      product: null
+
+    }
+  },
+
+  methods: {
+    addToFavorites(favorite) {
+      // const favoriteToSave = { ...currFavorite, id: '' }
+      this.$store.dispatch({ type: 'addFavorite', favorite })
+    },
+    removeFromFavorites(favoriteId){
+      this.$store.dispatch({ type: 'removeFavorite', favoriteId })
+
+    }
+  },
+
 }
 </script>

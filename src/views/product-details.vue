@@ -99,12 +99,12 @@
 
               <button type="button"
                 class="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
-                <HeartIcon v-if="!isFavorite" @click="addToFavorites(product)" class="h-6 w-6 flex-shrink-0"
+                <HeartIcon  @click="addToFavorites(product)" class="h-6 w-6 flex-shrink-0"
                   aria-hidden="true" />
 
                 <span class="sr-only">Add to favorites</span>
               </button>
-              <button v-if="isFavorite" @click=removeFromFavorites(product._id)> remove from favorites </button>
+              <button  @click=removeFromFavorites(product._id)> remove from favorites </button>
             </div>
           </form>
 
@@ -242,7 +242,7 @@ export default {
 
     async setIsFavorite() {
       let favorites = await favoriteService.query()
-      const isFavorite = favorites.filter(f => console.log(f._id, this.product._id) || f._id === this.product._id)
+      const isFavorite = favorites.filter(f => console.log(f?._id, this.product._id,'[[[[[]]]]]') || f?._id === this.product?._id)
       console.log('isFavorite: $$$$', isFavorite)
       if (isFavorite.length >= 1) {
         console.log('%%%')
@@ -250,7 +250,6 @@ export default {
       }
       else {
         this.isFavorite = false
-
       }
 
     }

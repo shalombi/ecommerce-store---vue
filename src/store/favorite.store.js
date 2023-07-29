@@ -71,14 +71,14 @@ export const favoriteStore = {
                 console.log('favorite from service:', favorite)
                 // return
                 // const favoriteToSave = { ...favorite, id: '' }
-                favorite = await favoriteService.save({ ...favorite, isInFavorites: favorite.isInFavorites })
+                const favoriteToSave = await favoriteService.save({ ...favorite, isInFavorites: favorite.isInFavorites })
 
                 console.log(favorite)
                 // return
 
 
-                context.commit(getActionAddFavorite(favorite))
-                return favorite
+                context.commit(getActionAddFavorite(favoriteToSave))
+                return favoriteToSave
             } catch (err) {
                 console.log('favoriteStore: Error in addFavorite', err)
                 throw err
